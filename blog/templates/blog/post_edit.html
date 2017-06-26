@@ -1,0 +1,90 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MY blog</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-primary fixed-top">
+	<div class="container">
+	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">
+		<strong>Django</strong>
+	    </a>
+	    <div class="collapse navbar-collapse" id="collapseEx2">
+		<ul class="navbar-nav mr-auto">
+		    <li class="nav-item active">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link">About Web</a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link">About me</a>
+		    </li>
+
+		</ul>
+
+	    </div>
+	</div>
+    </nav>
+    <!--/.Navbar-->
+
+
+    <!-- dynamic data -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+
+
+	{% if user.is_authenticated %}
+	<div class="panel panel-default" style="width;100;">
+
+	    <div class="panel-heading">
+		<h1>New post</h1>
+	    </div>
+	    <div class="panel-body">
+		<form method="POST" class="post-form">{% csrf_token %}
+		    {{ form.as_p }}
+		    <button type="submit" class="btn btn-primary">Save</button>
+		</form>
+	    </div>
+
+	</div>
+	{% endif %}
+
+    </div>
+    <!-- /dynamic data -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'js/tether.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+</body>
+
+</html>

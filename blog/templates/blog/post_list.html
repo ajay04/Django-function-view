@@ -1,0 +1,127 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MY blog</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <style>
+     html,
+     body,
+     .view {
+	 height: 100%;
+     }
+     .view{
+
+	 background: url({% static "img/3.jpg" %})no-repeat center center fixed;
+	 -webkit-background-size: cover;
+	 -moz-background-size: cover;
+	 -o-background-size: cover;
+	 background-size: cover;
+
+     }
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-toggleable-md navbar-dark bg-primary fixed-top">
+	<div class="container">
+	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapseEx2" aria-controls="collapseEx2" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	    </button>
+	    <a class="navbar-brand" href="#">
+		<strong>Django</strong>
+	    </a>
+	    <div class="collapse navbar-collapse" id="collapseEx2">
+		<ul class="navbar-nav mr-auto">
+		    <li class="nav-item active">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link">About Web</a>
+		    </li>
+		    <li class="nav-item">
+			<a class="nav-link">About me</a>
+		    </li>
+
+		</ul>
+		{% if user.is_authenticated %}
+		<ul class="nav navbar-nav nav-flex-icons ml-auto">
+		    <li class="nav-item ">
+			<a href="{% url 'post_new' %}" class="nav-link waves-effect waves-light" glyphicon-class/"><span class="badge red z-depth-1 mr-1 hidden-sm-down">NEW </span><i class="fa fa-plus" aria-hidden="true"></i> <span class="hidden-sm-down">Add Post</span></a>
+		    </li>
+		</ul>
+		{% endif %}
+	    </div>
+	</div>
+    </nav>
+    <!--/.Navbar-->
+
+    <div class="view">
+    <!--Intro content-->
+    <div class="full-bg-img flex-center">
+	<ul>
+	    <li>
+		<h1 class="h1-responsive" style=font-style:italic;><b>Django blog website using function based view</b></h1></li>
+	    <li>
+		<p><h3 class="h3-responsive" style=font-style:italic;><b>This is my first django project</b></h3></p>
+	    </li>
+
+	</ul>
+    </div>
+    <!--/Intro content-->
+    </div>
+
+
+    <!-- dynamic data -->
+    <br>
+    <br>
+    <div class="container">
+	<div class="row">
+	    {% for post in posts %}
+	    <div class="col-md-4 col-sm-4 col-lg-4">
+		<!-- Card -->
+		<div class="card">
+		    <!--Card content-->
+		    <div class="card-block">
+			<!--Title-->
+			<h4 class="card-title">{{post.title}}</h4>
+			<!--Text-->
+			<p class="card-text">{{post.text}}</p>
+			<a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-primary">More</a>
+		    </div>
+		    <!--Card content-->
+		</div>
+		<!-- /Card -->
+
+	    </div>
+	    {% endfor %}
+
+	</div>
+    </div>
+    <!-- /dynamic data -->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'js/tether.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+</body>
+
+</html>
